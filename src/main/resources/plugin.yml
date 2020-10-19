@@ -1,0 +1,6 @@
+name: HallClientAPI
+author: QuiiBz
+version: 1.0
+main: com.pvphall.hallclientapi.Main
+load: POSTWORLD
+commands:

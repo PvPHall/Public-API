@@ -1,0 +1,13 @@
+com\pvphall\hallclientapi\impl\emotes\Emote.class
+com\pvphall\hallclientapi\Main.class
+com\pvphall\hallclientapi\packets\server\SPacketHello.class
+com\pvphall\hallclientapi\listeners\PlayerListener.class
+com\pvphall\hallclientapi\packets\HallPacket.class
+com\pvphall\hallclientapi\packets\PacketManager.class
+com\pvphall\hallclientapi\impl\HallAPI.class
+com\pvphall\hallclientapi\impl\mods\Mod.class
+com\pvphall\hallclientapi\packets\server\SHallPacket.class
+com\pvphall\hallclientapi\api\emotes\IEmote.class
+com\pvphall\hallclientapi\api\mods\IMod.class
+com\pvphall\hallclientapi\api\IHallAPI.class
+com\pvphall\hallclientapi\packets\client\CHallPacket.class
