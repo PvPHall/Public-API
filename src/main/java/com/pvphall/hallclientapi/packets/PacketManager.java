@@ -6,7 +6,9 @@ import com.comphenix.protocol.events.PacketContainer;
 import com.comphenix.protocol.reflect.FieldUtils;
 import com.comphenix.protocol.reflect.accessors.Accessors;
 import com.google.common.collect.BiMap;
+import com.pvphall.hallclientapi.packets.client.CPacketHello;
 import com.pvphall.hallclientapi.packets.server.SPacketHello;
+import com.pvphall.hallclientapi.packets.server.SPacketRichPresence;
 import net.minecraft.server.v1_8_R3.EnumProtocol;
 import net.minecraft.server.v1_8_R3.EnumProtocolDirection;
 import net.minecraft.server.v1_8_R3.Packet;
@@ -23,11 +25,13 @@ public class PacketManager {
     public static void registerPackets() {
 
         registerPacket(SPacketHello.class, 74, PacketType.Sender.SERVER);
+        registerPacket(SPacketRichPresence.class, 75, PacketType.Sender.SERVER);
+        registerPacket(CPacketHello.class, 26, PacketType.Sender.CLIENT);
     }
 
     private static void registerPacket(Class<? extends HallPacket> packet, int id, PacketType.Sender sender) {
 
-        PacketType packetType = new PacketType(PacketType.Protocol.PLAY, sender, id, -1);
+        PacketType packetType = new PacketType(PacketType.Protocol.PLAY, sender, id, id);
         packets.put(packet, packetType);
 
         EnumProtocolDirection direction = packetType.isClient() ? EnumProtocolDirection.SERVERBOUND : EnumProtocolDirection.CLIENTBOUND;

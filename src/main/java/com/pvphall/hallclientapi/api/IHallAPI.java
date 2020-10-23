@@ -1,6 +1,7 @@
 package com.pvphall.hallclientapi.api;
 
 import com.pvphall.hallclientapi.api.emotes.IEmote;
+import com.pvphall.hallclientapi.api.players.IPlayerManager;
 import org.bukkit.entity.Player;
 
 import java.util.List;
@@ -40,11 +41,25 @@ public interface IHallAPI {
     void setHallClientOnly(boolean hallClientOnly);
 
     /**
+     * Check if the server only allow players with PvPHall Client.
+     *
+     * @return True if the server is restricted
+     */
+    boolean isHallClientOnly();
+
+    /**
      * Set if the server should be accessible only with PvPHall AC.
      *
      * @param acOnly - If the server is restricted
      */
     void setACOnly(boolean acOnly);
+
+    /**
+     * Check if the server only allow players with PvPHall AC.
+     *
+     * @return True if the server is restricted
+     */
+    boolean isACOnly();
 
     /**
      * Check if a player is playing with PvPHall Client.
@@ -61,4 +76,6 @@ public interface IHallAPI {
      * @return True if the player is playing with PvPHall AC
      */
     boolean isRunningAC(Player player);
+
+    IPlayerManager getPlayerManager();
 }

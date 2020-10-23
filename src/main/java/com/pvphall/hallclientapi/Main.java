@@ -5,6 +5,7 @@ import com.pvphall.hallclientapi.listeners.PlayerListener;
 import com.pvphall.hallclientapi.packets.PacketManager;
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.java.JavaPlugin;
+import org.bukkit.plugin.messaging.Messenger;
 
 public class Main extends JavaPlugin {
 
@@ -13,6 +14,9 @@ public class Main extends JavaPlugin {
 
         // Create the instance of HallAPI
         new HallAPI();
+
+        Messenger messenger = this.getServer().getMessenger();
+        messenger.registerOutgoingPluginChannel(this, HallAPI.CHANNEL_NAME);
 
         PacketManager.registerPackets();
 
