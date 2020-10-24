@@ -77,5 +77,10 @@ public interface IHallAPI {
      */
     boolean isRunningAC(Player player);
 
+    /**
+     * Get the instance of IPlayerManager to manage players.
+     *
+     * @return The IPlayerManager instance
+     */
     IPlayerManager getPlayerManager();
 }

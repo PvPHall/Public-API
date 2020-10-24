@@ -12,7 +12,7 @@ import java.util.List;
 
 public class HallAPI implements IHallAPI {
 
-    private static HallAPI instance;
+    private static IHallAPI instance;
     public static final String CHANNEL_NAME = "HallClient";
     private boolean hallClientOnly;
     private boolean acOnly;
@@ -86,7 +86,7 @@ public class HallAPI implements IHallAPI {
         return this.playerManager;
     }
 
-    public static HallAPI getInstance() {
+    public static IHallAPI getInstance() {
 
         return instance;
     }
