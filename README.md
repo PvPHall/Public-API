@@ -40,7 +40,12 @@ This is the official repository for the Client API of PvPHall Client. Can be use
 2) The jar output in the `../plugins` folder
 
 ### Configuration guide
-Coming soon
+| Key | Type | Description |
+|-----|------|-------------|
+| OPTIONS.RICH_PRESENCE_ENABLED | boolean | If the config RichPresence should be used
+| OPTIONS.RICH_PRESENCE_TEXT | string | The RichPresence text to set for all the players
+| CONNECTION.ALLOW_ONLY_HALLCLIENT | boolean | If you restrict access for only PvPHall Client users
+| CONNECTION.ALLOW_ONLY_AC | boolean | If you restrict access for only PvPHall AC enabled
 
 ### API guide
 To access all the available methods, get the instance:
