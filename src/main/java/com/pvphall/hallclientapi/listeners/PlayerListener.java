@@ -5,6 +5,8 @@ import com.pvphall.hallclientapi.impl.HallAPI;
 import com.pvphall.hallclientapi.impl.players.HallPlayer;
 import com.pvphall.hallclientapi.packets.PacketManager;
 import com.pvphall.hallclientapi.packets.server.SPacketHello;
+import org.bukkit.configuration.file.FileConfiguration;
+import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerJoinEvent;
@@ -39,13 +41,15 @@ public class PlayerListener implements Listener {
     @EventHandler
     public void onJoin(PlayerJoinEvent event) {
 
+        Player player = event.getPlayer();
+
         // Delay the send of HelloPacket
         new BukkitRunnable() {
 
             @Override
             public void run() {
 
-                UUID uuid = event.getPlayer().getUniqueId();
+                UUID uuid = player.getUniqueId();
 
                 if(PlayerListener.this.registeredPlayers.contains(uuid))
                     PacketManager.sendPacket(event.getPlayer(), new SPacketHello());
@@ -54,6 +58,12 @@ public class PlayerListener implements Listener {
             }
 
         }.runTaskLater(this.main, 2);
+
+        // Set rich presence if enabled
+        FileConfiguration config = this.main.getConfig();
+
+        if(config.getBoolean("OPTIONS.RICH_PRESENCE_ENABLED"))
+            HallAPI.getInstance().setRichPresence(player, config.getString("OPTIONS.RICH_PRESENCE_TEXT"));
     }
 
     @EventHandler
