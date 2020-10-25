@@ -39,6 +39,7 @@ public class PlayerListener implements Listener {
     @EventHandler
     public void onJoin(PlayerJoinEvent event) {
 
+        // Delay the send of HelloPacket
         new BukkitRunnable() {
 
             @Override

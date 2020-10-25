@@ -20,7 +20,8 @@ This is the official repository for the Client API of PvPHall Client. Can be use
 
 ##### Installing
 1) Download the latest jar from [releases](https://github.com/PvPHall/Public-API/releases)
-2) Put it in the plugins folder of your server
+2) Download [ProtocolLib](https://dev.bukkit.org/projects/protocollib) plugin
+2) Put them in your plugins folder
 3) Restart your server and configure the plugin to your liking
 
 ##### Configuring
