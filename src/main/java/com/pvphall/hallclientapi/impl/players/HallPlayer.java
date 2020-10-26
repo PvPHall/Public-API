@@ -8,9 +8,9 @@ import java.util.UUID;
 
 public class HallPlayer implements IHallPlayer {
 
-    private UUID uuid;
-    private boolean runningHallClient;
-    private boolean runningAC;
+    private final UUID uuid;
+    private final boolean runningHallClient;
+    private final boolean runningAC;
 
     public HallPlayer(UUID uuid, boolean runningHallClient, boolean runningAC) {
 

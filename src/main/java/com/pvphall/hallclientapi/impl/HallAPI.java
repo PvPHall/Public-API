@@ -17,7 +17,7 @@ public class HallAPI implements IHallAPI {
     private boolean hallClientOnly;
     private boolean acOnly;
 
-    private IPlayerManager playerManager;
+    private final IPlayerManager playerManager;
 
     public HallAPI() {
 

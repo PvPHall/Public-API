@@ -10,6 +10,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerJoinEvent;
+import org.bukkit.event.player.PlayerKickEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
 import org.bukkit.event.player.PlayerRegisterChannelEvent;
 import org.bukkit.scheduler.BukkitRunnable;
@@ -20,8 +21,8 @@ import java.util.UUID;
 
 public class PlayerListener implements Listener {
 
-    private Main main;
-    private List<UUID> registeredPlayers;
+    private final Main main;
+    private final List<UUID> registeredPlayers;
 
     public PlayerListener(Main main) {
 
@@ -73,7 +74,7 @@ public class PlayerListener implements Listener {
     }
 
     @EventHandler
-    public void onKick(PlayerQuitEvent event) {
+    public void onKick(PlayerKickEvent event) {
 
         this.onLeave(event.getPlayer().getUniqueId());
     }
