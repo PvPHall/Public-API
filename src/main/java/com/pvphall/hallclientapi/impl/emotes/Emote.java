@@ -4,7 +4,7 @@ import com.pvphall.hallclientapi.api.emotes.IEmote;
 
 public class Emote implements IEmote {
 
-    private String name;
+    private final String name;
 
     public Emote(String name) {
 

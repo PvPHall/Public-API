@@ -15,7 +15,7 @@ import java.util.UUID;
 
 public class PlayerManager implements IPlayerManager {
 
-    private Map<UUID, IHallPlayer> players;
+    private final Map<UUID, IHallPlayer> players;
 
     public PlayerManager() {
 

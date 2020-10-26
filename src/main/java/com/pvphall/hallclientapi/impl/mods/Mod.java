@@ -4,7 +4,7 @@ import com.pvphall.hallclientapi.api.mods.IMod;
 
 public class Mod implements IMod {
 
-    private String name;
+    private final String name;
 
     public Mod(String name) {
 

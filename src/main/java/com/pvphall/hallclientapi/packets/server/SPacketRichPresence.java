@@ -4,7 +4,7 @@ import net.minecraft.server.v1_8_R3.PacketDataSerializer;
 
 public class SPacketRichPresence extends SHallPacket {
 
-    private String richPresence;
+    private final String richPresence;
 
     public SPacketRichPresence(String richPresence) {
 

@@ -21,8 +21,8 @@ import java.util.UUID;
 
 public class PlayerListener implements Listener {
 
-    private Main main;
-    private List<UUID> registeredPlayers;
+    private final Main main;
+    private final List<UUID> registeredPlayers;
 
     public PlayerListener(Main main) {
 
