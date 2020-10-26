@@ -21,50 +21,65 @@ public class PacketManager {
     private static Map<Class<?>, EnumProtocol> cacheMapPacket;
 
     // Avoid multiple instance of PacketManager
-    private PacketManager() {
-    }
+    private PacketManager() { }
 
     public static void registerPackets() {
+
         registerPacket(SPacketHello.class, 74, PacketType.SERVER);
         registerPacket(SPacketRichPresence.class, 75, PacketType.SERVER);
         registerPacket(CPacketHello.class, 26, PacketType.CLIENT);
     }
 
-    // Synchronize this function to avoid multiple map setter in multiple thread.
+    // Synchronize this function to avoid multiple map setter in multiple thread
     @SuppressWarnings("unchecked")
     private static synchronized void registerPacket(Class<? extends HallPacket> packet, int id, PacketType sender) {
+
         packets.put(packet, sender);
 
         EnumProtocolDirection direction = sender == PacketType.CLIENT ? EnumProtocolDirection.SERVERBOUND : EnumProtocolDirection.CLIENTBOUND;
 
         try {
-            if (cacheMap == null) {
-                Field enumProtocolBiMap = EnumProtocol.class.getDeclaredField("j");
-                enumProtocolBiMap.setAccessible(true);
-                cacheMap = (Map<EnumProtocolDirection, BiMap<Integer, Class<? extends Packet<?>>>>) enumProtocolBiMap.get(EnumProtocol.PLAY);
-            }
+
+            initializeCacheMap();
+
             BiMap<Integer, Class<? extends Packet<?>>> biMap = cacheMap.get(direction);
             biMap.put(id, (Class<? extends Packet<?>>) packet);
             cacheMap.put(direction, biMap);
 
-            if (cacheMapPacket == null) {
-                Field enumProtocolMap = EnumProtocol.class.getDeclaredField("h");
-                enumProtocolMap.setAccessible(true);
-                cacheMapPacket = (Map<Class<?>, EnumProtocol>) enumProtocolMap.get(EnumProtocol.PLAY);
-            }
+            initializeCacheMapPacket();
+
             cacheMapPacket.put(packet, EnumProtocol.PLAY);
+
         } catch (IllegalAccessException | NoSuchFieldException e) {
+
             e.printStackTrace();
         }
     }
 
+    @SuppressWarnings("unchecked")
+    private static synchronized void initializeCacheMap() throws NoSuchFieldException, IllegalAccessException {
+
+        if(cacheMap == null) {
+
+            Field enumProtocolBiMap = EnumProtocol.class.getDeclaredField("j");
+            enumProtocolBiMap.setAccessible(true);
+            cacheMap = (Map<EnumProtocolDirection, BiMap<Integer, Class<? extends Packet<?>>>>) enumProtocolBiMap.get(EnumProtocol.PLAY);
+        }
+    }
+
+    @SuppressWarnings("unchecked")
+    private static synchronized void initializeCacheMapPacket() throws NoSuchFieldException, IllegalAccessException {
+
+        if(cacheMapPacket == null) {
+
+            Field enumProtocolMap = EnumProtocol.class.getDeclaredField("h");
+            enumProtocolMap.setAccessible(true);
+            cacheMapPacket = (Map<Class<?>, EnumProtocol>) enumProtocolMap.get(EnumProtocol.PLAY);
+        }
+    }
+
     public static void sendPacket(Player player, HallPacket packet) {
+
         ((CraftPlayer) player).getHandle().playerConnection.sendPacket(packet);
     }
-
-    public static PacketType getPacketType(Class<? extends HallPacket> packet) {
-        return packets.get(packet);
-    }
-
-
 }
