@@ -52,19 +52,21 @@ public class PlayerListener implements Listener {
 
                 UUID uuid = player.getUniqueId();
 
-                if(PlayerListener.this.registeredPlayers.contains(uuid))
+                if(PlayerListener.this.registeredPlayers.contains(uuid)) {
+
                     PacketManager.sendPacket(event.getPlayer(), new SPacketHello());
-                else
+
+                    // Set rich presence if enabled
+                    FileConfiguration config = PlayerListener.this.main.getConfig();
+
+                    if(config.getBoolean("OPTIONS.RICH_PRESENCE_ENABLED"))
+                        HallAPI.getInstance().setRichPresence(player, config.getString("OPTIONS.RICH_PRESENCE_TEXT"));
+
+                } else
                     HallAPI.getInstance().getPlayerManager().addHallClientPlayer(new HallPlayer(uuid, false, false));
             }
 
         }.runTaskLater(this.main, 2);
-
-        // Set rich presence if enabled
-        FileConfiguration config = this.main.getConfig();
-
-        if(config.getBoolean("OPTIONS.RICH_PRESENCE_ENABLED"))
-            HallAPI.getInstance().setRichPresence(player, config.getString("OPTIONS.RICH_PRESENCE_TEXT"));
     }
 
     @EventHandler
