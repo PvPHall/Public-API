@@ -6,8 +6,8 @@ import org.bukkit.event.HandlerList;
 
 public class HCPlayerJoinEvent extends Event {
 
-    private static HandlerList handlerList = new HandlerList();
-    private IHallPlayer hallPlayer;
+    private static final HandlerList handlerList = new HandlerList();
+    private final IHallPlayer hallPlayer;
 
     public HCPlayerJoinEvent(IHallPlayer hallPlayer) {
 
